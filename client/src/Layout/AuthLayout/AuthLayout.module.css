@@ -1,0 +1,45 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1580px;
+  margin: 0 auto;
+  height: 100vh;
+  background-color: azure;
+}
+.tab {
+  border-radius: 10px;
+  width: 60%;
+  height: 80vh;
+  background-color: aquamarine;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+}
+
+.menu {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+.menu a {
+  text-decoration: none;
+  color: black;
+}
+.outlet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+.active{
+  padding-bottom: 5px;
+  border-bottom: 5px solid #f88437;
+  border-radius: 4px;
+}
