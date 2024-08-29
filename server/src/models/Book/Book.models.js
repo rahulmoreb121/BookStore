@@ -105,6 +105,18 @@ const bookSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    publishedOn: {
+      type: String,
+      required:true
+    },
+    language:{
+      type: String,
+      required:true
+    },
+    pages:{
+      type: Number,
+      required:true
+    }
   },
   { timestamps: true }
 );

@@ -1,0 +1,45 @@
+.main {
+  width: 70%;
+}
+.main input {
+  width: 100%;
+  outline: none;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.button {
+  margin-top: 10px;
+}
+.button button {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.signin {
+  background: #2196f3;
+}
+.signup {
+  background: #adb5bd;
+}
+.forgot{
+  padding: 10px 0;
+}
+.forgot a {
+  text-decoration: none;
+  color: black;
+
+}
+.error {
+  font-size: 14px;
+  font-weight: 400;
+  color: red;
+}
+.server_error{
+  padding: 10px 0 10px 0;
+}
