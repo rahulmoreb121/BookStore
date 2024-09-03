@@ -11,6 +11,8 @@ import Signup from "./pages/Signup";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import ProtectedRouteLayout from "./Layout/ProtectedRouteLayout/ProtectedRouteLayout";
+import MyBookLayout from "./Layout/MyBookLayout/MyBookLayout";
+import AddNewBook from "./pages/AddNewBook";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,8 +39,15 @@ const router = createBrowserRouter([
             element: <About />,
           },
           {
-            path: "mybooks",
-            element: <MyBooks />,
+            
+            element: <MyBookLayout />,
+            children: [
+              { path: "mybooks",element: <MyBooks /> },
+              {
+                path: "book",
+                element: <AddNewBook />,
+              },
+            ],
           },
           {
             path: "mybooks/:id",
