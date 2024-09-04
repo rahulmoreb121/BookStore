@@ -1,6 +1,7 @@
 import style from "./BookForm.module.css";
 import { useForm } from "react-hook-form";
-const BookForm = () => {
+// eslint-disable-next-line react/prop-types
+const BookForm = ({ addOrUpdate }) => {
   const categories = [
     "Literary Fiction",
     "Historical Fiction",
@@ -42,9 +43,10 @@ const BookForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
-    file: "",
+    coverImages: [],
     title: "",
     description: "",
     category: "",
@@ -54,9 +56,22 @@ const BookForm = () => {
     language: "",
     pages: "",
   });
-  const submit = (data) => {
-    console.log(data);
+  const submit = async (data) => {
+    await addOrUpdate(data);
+    reset();
   };
+  // const validateFileSize = (files) => {
+  //   console.log("inside", files[0]);
+
+  //   const maxSize = 10 * 1024;
+  //   for (let i = 0; i < files.length; i++) {
+  //     if (files[i].size > maxSize) {
+  //       console.log("insede the file", files[i].size, maxSize);
+  //       return false;
+  //     }
+  //   }
+  //   return true;
+  // };
   const today = new Date().toISOString().split("T")[0];
   return (
     <div className={style.main}>
@@ -180,18 +195,25 @@ const BookForm = () => {
         </div>
 
         <div className={style.upload}>
-          <span className={style.label} htmlFor="file">
-            Upload Photos:
-          </span>
+          <span className={style.label}>Upload Photos:</span>
           <input
             className={style.file}
-            id="file"
-            {...register("file", { required: "Image is required" })}
+            {...register("coverImages", {
+              required: "Image is required",
+              // validate: {
+              //   fileSize: validateFileSize || "file should be lesss than 2mb",
+              // },
+            })}
             type="file"
             multiple
           />
         </div>
-        {errors.file && <p className={style.error}>{errors.file.message}</p>}
+        {errors.coverImages && errors.coverImages.type === "required" && (
+          <p className={style.error}>{errors.coverImages.message}</p>
+        )}
+        {/* {errors.coverImages && errors.coverImages.type === "fileSize" && (
+          <p className={style.error}>Image should be less than 2 mb</p>
+        )} */}
 
         <button type="submit">Submit</button>
       </form>
