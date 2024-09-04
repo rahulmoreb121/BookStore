@@ -1,0 +1,81 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30%;
+  max-width: 1580px;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+form {
+  margin-top: 10px;
+}
+form div {
+  margin-top: 10px;
+}
+
+.datepicker {
+  width: 100%;
+}
+form:nth-child(3),
+select {
+  width: 100%;
+  padding: 6px 8px;
+}
+.textarea {
+  resize: none;
+  padding: 6px 8px;
+  outline: none;
+}
+.main input {
+  width: 100%;
+  padding: 6px 8px;
+  outline: none;
+}
+
+.input_container input {
+  /* border: none; */
+  box-sizing: border-box;
+  outline: 0;
+  position: relative;
+  width: 100%;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+.error {
+  color: red;
+  font-size: 14px;
+}
+.upload {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.label {
+  flex: 0.5;
+}
+.file {
+  flex: 1;
+}
+button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #29f980;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 15px;
+}

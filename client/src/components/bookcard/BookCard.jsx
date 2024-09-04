@@ -3,7 +3,7 @@ const BookCard = () => {
   return (
     <div className="main">
       <div className="top">
-        <img src="../../../public/assets/book.jpg" alt="" />
+        <img src="/assets/book.jpg" alt="" />
       </div>
       <div className="bottom">
         <div className="date_likes">

@@ -7,11 +7,29 @@ import { uploadPhotoCloudinary } from '../utils/uploadPhotoCloudinary.js';
 import { deleteCloudinaryImages } from '../utils/deleteCloudinaryImages.js';
 
 const addBook = asyncHandler(async (req, res, next) => {
-  let { title, description, category, price, discountPercentage } = req.body;
+  let {
+    title,
+    description,
+    category,
+    price,
+    discountPercentage,
+    pages,
+    language,
+    publishedOn,
+  } = req.body;
   let author = req.user;
   let multerImages = req.files;
 
-  if (!title || !description || !category || !price || !discountPercentage) {
+  if (
+    !title ||
+    !description ||
+    !category ||
+    !price ||
+    !discountPercentage ||
+    !pages ||
+    !language ||
+    !publishedOn
+  ) {
     return next(new ApiError(400, 'All fields are mandatory'));
   }
   if (!multerImages.length) {
@@ -39,6 +57,9 @@ const addBook = asyncHandler(async (req, res, next) => {
       discountPercentage,
       coverImages,
       author,
+      pages,
+      language,
+      publishedOn,
     });
 
     res

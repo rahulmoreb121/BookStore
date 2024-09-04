@@ -4,46 +4,46 @@ import { useState } from "react";
 import styles from "./Auth.module.css";
 import { Link } from "react-router-dom";
 const Auth = ({ isSignup = false, loginOrRegister, serverError }) => {
-  const [username, setUsername] = useState("");
+  const [userName, setuserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  const [usernameError, setUsernameError] = useState("");
+  const [userNameError, setuserNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
 
   const onSubmit = () => {
-    if (!username) {
-      setUsernameError("username is required");
+    if (!userName) {
+      setuserNameError("userName is required");
       if (password) setPasswordError("");
       if (email) setEmailError("");
     }
     if (!password) {
       setPasswordError("password is required");
-      if (username) setUsernameError("");
+      if (userName) setuserNameError("");
       if (email) setEmailError("");
     }
     if (!email) {
       setEmailError("email is required");
-      if (username) setUsernameError("");
+      if (userName) setuserNameError("");
       if (password) setPasswordError("");
     }
     if (!isSignup) {
-      if (username && password) {
-        loginOrRegister({ username, password });
-        setUsername("");
+      if (userName && password) {
+        loginOrRegister({ userName, password });
+        setuserName("");
         setPassword("");
-        setUsernameError("");
+        setuserNameError("");
         setPasswordError("");
       }
     }
     if (isSignup) {
-      if (username && password && email) {
-        loginOrRegister({ username, password, email });
-        setUsername("");
+      if (userName && password && email) {
+        loginOrRegister({ userName, password, email });
+        setuserName("");
         setPassword("");
         setEmail("");
-        setUsernameError("");
+        setuserNameError("");
         setPasswordError("");
         setEmailError("");
       }
@@ -52,16 +52,16 @@ const Auth = ({ isSignup = false, loginOrRegister, serverError }) => {
 
   return (
     <div className={styles.main}>
-      <div className="username">
+      <div className="userName">
         <input
           type="text"
-          name="username"
-          placeholder="Username"
-          value={username}
+          name="userName"
+          placeholder="userName"
+          value={userName}
           autoComplete="off"
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setuserName(e.target.value)}
         />
-        {usernameError && <div className={styles.error}>{usernameError}</div>}
+        {userNameError && <div className={styles.error}>{userNameError}</div>}
       </div>
       {isSignup && (
         <div className="email">

@@ -5,31 +5,55 @@ import About from "./pages/About";
 import MyBooks from "./pages/MyBooks";
 import Navbar from "./components/navbar/Navbar";
 import BookDetails from "./pages/BookDetails";
-import NavbarLayout from "./Layout/NavbarLayout/NavbarLayout";
 import AuthLayout from "./Layout/AuthLayout/AuthLayout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import ProtectedRouteLayout from "./Layout/ProtectedRouteLayout/ProtectedRouteLayout";
+import MyBookLayout from "./Layout/MyBookLayout/MyBookLayout";
+import AddNewBook from "./pages/AddNewBook";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AuthLayout />,
     children: [
-      { index: true, element: <Login /> },
       {
-        path: "/signup",
-        element: <Signup />,
+        element: <AuthLayout />,
+        children: [
+          { path: "login", element: <Login /> },
+          {
+            path: "signup",
+            element: <Signup />,
+          },
+        ],
       },
       {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/mybooks",
-        element: <MyBooks />,
-      },
-      {
-        path: "/mybooks/:id",
-        element: <BookDetails />,
+        element: <ProtectedRouteLayout />,
+        children: [
+          {
+            index: true,
+            element: <Home />,
+          },
+          {
+            path: "about",
+            element: <About />,
+          },
+          {
+            
+            element: <MyBookLayout />,
+            children: [
+              { path: "mybooks",element: <MyBooks /> },
+              {
+                path: "book",
+                element: <AddNewBook />,
+              },
+            ],
+          },
+          {
+            path: "mybooks/:id",
+            element: <BookDetails />,
+          },
+        ],
       },
     ],
   },
@@ -37,9 +61,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <RouterProvider router={router}>
-      <Navbar />
-    </RouterProvider>
+    <Provider store={store}>
+      <RouterProvider router={router}>
+        <Navbar />
+      </RouterProvider>
+    </Provider>
   );
 }
 

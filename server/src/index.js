@@ -4,7 +4,7 @@ dotenv.config({ path: './.env' });
 import { router as authRouter } from './routes/auth.route.js';
 import { router as bookRouter } from './routes/book.route.js';
 import { router as refreshTokenRouter } from './routes/refreshToken.route.js';
-
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { ApiError } from './utils/ApiError.js';
 
@@ -19,7 +19,7 @@ app.use(
 );
 app.use(express.urlencoded({ extended: true, limit: '50kb' }));
 app.use(cookieParser());
-
+app.use(cors());
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/book', verifyAccessToken, upload, bookRouter);
 app.use('/api/v1/refreshToken', refreshTokenRouter);
