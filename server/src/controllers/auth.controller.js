@@ -59,7 +59,7 @@ export const userLogin = asyncHandler(async (req, res, next) => {
     userExists.userName
   );
   userExists.refreshToken = refreshToken;
-  userExists.save();
+  await userExists.save();
   res.cookie('jwt', refreshToken, {
     httpOnly: true, // Makes cookie inaccessible to JavaScript
     secure: false, // Set to true if using HTTPS

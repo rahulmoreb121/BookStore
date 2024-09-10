@@ -1,9 +1,11 @@
 import BookForm from "../components/bookform/BookForm";
 import api from "../api/axios.js";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const AddNewBook = () => {
   const accessToken = useSelector((state) => state.authreducer.accessToken);
-  const addBook = async (data) => {
+  const navigate = useNavigate();
+  const addBook = async (data, reset) => {
     console.log("from add book", data);
     const formdata = new FormData();
     for (let i = 0; i < data.coverImages.length; i++) {
@@ -22,11 +24,12 @@ const AddNewBook = () => {
 
     const headers = {
       Authorization: `Bearer ${accessToken}`,
-      // "Content-Type": "multipart/form-data",
     };
     try {
       const response = await api.post("/book", formdata, { headers });
       console.log(response);
+      reset();
+      navigate("/mybooks");
     } catch (error) {
       console.log(error);
     }

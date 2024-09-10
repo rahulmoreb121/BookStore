@@ -1,5 +1,14 @@
 import "./BookCard.css";
-const BookCard = () => {
+const BookCard = ({
+  category,
+  title,
+  description,
+  price,
+  discountPercentage,
+  publishedOn,
+  language,
+  pages,
+}) => {
   return (
     <div className="main">
       <div className="top">

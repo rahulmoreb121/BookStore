@@ -57,21 +57,20 @@ const BookForm = ({ addOrUpdate }) => {
     pages: "",
   });
   const submit = async (data) => {
-    await addOrUpdate(data);
-    reset();
+    await addOrUpdate(data, reset);
   };
-  // const validateFileSize = (files) => {
-  //   console.log("inside", files[0]);
+  const validateFileSize = (files) => {
+    console.log("inside", files[0]);
 
-  //   const maxSize = 10 * 1024;
-  //   for (let i = 0; i < files.length; i++) {
-  //     if (files[i].size > maxSize) {
-  //       console.log("insede the file", files[i].size, maxSize);
-  //       return false;
-  //     }
-  //   }
-  //   return true;
-  // };
+    const maxSize = 5 * 1024 * 1024;
+    for (let i = 0; i < files.length; i++) {
+      if (files[i].size > maxSize) {
+        console.log("insede the file", files[i].size, maxSize);
+        return false;
+      }
+    }
+    return true;
+  };
   const today = new Date().toISOString().split("T")[0];
   return (
     <div className={style.main}>
@@ -200,9 +199,9 @@ const BookForm = ({ addOrUpdate }) => {
             className={style.file}
             {...register("coverImages", {
               required: "Image is required",
-              // validate: {
-              //   fileSize: validateFileSize || "file should be lesss than 2mb",
-              // },
+              validate: {
+                fileSize: validateFileSize || "file should be lesss than 2mb",
+              },
             })}
             type="file"
             multiple

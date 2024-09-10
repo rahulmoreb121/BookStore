@@ -20,7 +20,7 @@ const BookDetail = () => {
         <div className="date">123</div>
         <div className="laguage">sdfs</div>
         <div className="pages">12</div>
-        <div className="category">sdf</div>
+        <div className="category">{"category"}</div>
         <div className="price">$90</div>
         <div className="buttons">
           <div className="btn1">1</div>

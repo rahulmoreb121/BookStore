@@ -39,10 +39,13 @@ const router = createBrowserRouter([
             element: <About />,
           },
           {
-            
             element: <MyBookLayout />,
             children: [
-              { path: "mybooks",element: <MyBooks /> },
+              {
+                path: "mybooks",
+                element: <MyBooks />,
+                // loader: myBooksLoader,
+              },
               {
                 path: "book",
                 element: <AddNewBook />,
