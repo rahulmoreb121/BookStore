@@ -10,12 +10,18 @@ const Login = () => {
   const navigate = useNavigate();
   const login = async (data) => {
     try {
-      let response = await api.post("/auth/login", data);
+      let response = await api.post("/auth/login", data, {
+        withCredentials: true,
+      });
       dispatch(userLogin(response.data.data));
       navigate("/", { replace: true });
     } catch (err) {
-      console.log(err);
-      setError(err.response.data.message);
+      console.log("Login error", err);
+      if (err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+        setError(err.message);
+      }
     }
   };
 
