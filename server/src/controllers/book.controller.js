@@ -82,7 +82,9 @@ const getAllBooks = asyncHandler(async (req, res, next) => {
 });
 
 const getAllBooksOfUser = asyncHandler(async (req, res, next) => {
-  let books = await bookModel.find({ _id: req.user });
+  let books = await bookModel.find({
+    author: new mongoose.Types.ObjectId(req.user),
+  });
   if (!books.length) {
     return next(new ApiError(200, 'No Books available'));
   }

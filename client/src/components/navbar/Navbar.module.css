@@ -24,3 +24,6 @@
   text-decoration: none;
   color: black;
 }
+.logout{
+  cursor: pointer;
+}
