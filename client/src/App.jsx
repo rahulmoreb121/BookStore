@@ -13,6 +13,7 @@ import { store } from "./store/store";
 import ProtectedRouteLayout from "./Layout/ProtectedRouteLayout/ProtectedRouteLayout";
 import MyBookLayout from "./Layout/MyBookLayout/MyBookLayout";
 import AddNewBook from "./pages/AddNewBook";
+import PersistUser from "./Layout/PersistUser/PersistUser";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,34 +28,40 @@ const router = createBrowserRouter([
           },
         ],
       },
+
       {
-        element: <ProtectedRouteLayout />,
+        element: <PersistUser />,
         children: [
           {
-            index: true,
-            element: <Home />,
-          },
-          {
-            path: "about",
-            element: <About />,
-          },
-          {
-            element: <MyBookLayout />,
+            element: <ProtectedRouteLayout />,
             children: [
               {
-                path: "mybooks",
-                element: <MyBooks />,
-                // loader: myBooksLoader,
+                index: true,
+                element: <Home />,
               },
               {
-                path: "book",
-                element: <AddNewBook />,
+                path: "about",
+                element: <About />,
+              },
+              {
+                element: <MyBookLayout />,
+                children: [
+                  {
+                    path: "mybooks",
+                    element: <MyBooks />,
+                    // loader: myBooksLoader,
+                  },
+                  {
+                    path: "book",
+                    element: <AddNewBook />,
+                  },
+                ],
+              },
+              {
+                path: "mybooks/:id",
+                element: <BookDetails />,
               },
             ],
-          },
-          {
-            path: "mybooks/:id",
-            element: <BookDetails />,
           },
         ],
       },

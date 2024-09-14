@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+  import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 const userSchema = new mongoose.Schema(
@@ -59,14 +59,14 @@ userSchema.methods.comparePassword = async function (password) {
 
 userSchema.methods.createRefreshToken = async function (_id, userName) {
   const refreshToken = jwt.sign({ _id, userName }, process.env.REFRESH_SECRET, {
-    expiresIn: '10m',
+    expiresIn: '20m',
   });
   return refreshToken;
 };
 
 userSchema.methods.createAccessToken = async function (_id, userName) {
   const accessToken = jwt.sign({ _id, userName }, process.env.ACCESS_SECRET, {
-    expiresIn: '5m',
+    expiresIn: '10m',
   });
   return accessToken;
 };
