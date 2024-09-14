@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.route('/').post(addBook);
 router.route('/').get(getAllBooks);
-router.route('/').get(getAllBooksOfUser);
+router.route('/userbooks').get(getAllBooksOfUser);
 router.route('/:id').get(getSingleBook);
 router.route('/').delete(deleteBookImage);
 router.route('/:id').patch(updateBookDetails);

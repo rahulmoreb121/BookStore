@@ -59,14 +59,14 @@ userSchema.methods.comparePassword = async function (password) {
 
 userSchema.methods.createRefreshToken = async function (_id, userName) {
   const refreshToken = jwt.sign({ _id, userName }, process.env.REFRESH_SECRET, {
-    expiresIn: '1m',
+    expiresIn: '10m',
   });
   return refreshToken;
 };
 
 userSchema.methods.createAccessToken = async function (_id, userName) {
   const accessToken = jwt.sign({ _id, userName }, process.env.ACCESS_SECRET, {
-    expiresIn: '30s',
+    expiresIn: '5m',
   });
   return accessToken;
 };
