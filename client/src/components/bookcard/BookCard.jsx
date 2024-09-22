@@ -14,7 +14,10 @@ const BookCard = (prop) => {
         <p className="desc">{prop.bookData.description}</p>
         <div className="price_buttons">
           <p className="price">{prop.bookData.price}</p>
-          <div className="buttons">
+          <div
+            className="buttons"
+            onClick={() => prop.navigateBookDetail(prop.bookData._id)}
+          >
             <button className="explore_btn">explore </button>
             <button className="add_to_cart_btn">add to cart</button>
           </div>

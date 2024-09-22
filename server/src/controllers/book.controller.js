@@ -102,7 +102,7 @@ const getSingleBook = asyncHandler(async (req, res, next) => {
       return next(new ApiError(400, 'No Book found with this Id'));
     res
       .status(200)
-      .json(new ApiResponse(200, book, 'book retrieved successfully'));
+      .json(new ApiResponse(200, ...book, 'book retrieved successfully'));
   } catch (error) {
     return next(new ApiError(400, 'No Book found with this Id'));
   }

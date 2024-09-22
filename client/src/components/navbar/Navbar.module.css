@@ -24,6 +24,9 @@
   text-decoration: none;
   color: black;
 }
-.logout{
-  cursor: pointer;
+.active {
+  padding-bottom: 5px;
+  border-bottom: 5px solid #8d8d86;
+  border-radius: 4px;
 }
+
