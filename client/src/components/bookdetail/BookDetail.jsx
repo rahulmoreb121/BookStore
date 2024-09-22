@@ -1,9 +1,26 @@
 import styles from "./BookDetail.module.css";
-const BookDetail = () => {
+const BookDetail = ({ bookDetail }) => {
+  console.log(bookDetail[0].coverImages[0]);
+
   return (
     <div className={styles.main}>
       <div className={styles.left}>
-        <img src="../public/assets/book.jpg" width={100} height={100} alt="" />
+        <div className="primary_image">
+          <img
+            src={bookDetail?.coverImages}
+            width={100}
+            height={100}
+            alt=""
+          />
+        </div>
+        <div className="secondary_image">
+          <img
+            src="../public/assets/book.jpg"
+            width={100}
+            height={100}
+            alt=""
+          />
+        </div>
       </div>
       <div className={styles.right}>
         <div className="title">title</div>

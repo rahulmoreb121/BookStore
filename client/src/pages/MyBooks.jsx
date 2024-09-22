@@ -3,10 +3,12 @@ import { useSelector } from "react-redux";
 import useAxiosPrivate from "../hooks/useAxiosPrivate.jsx";
 import BookCard from "../components/BookCard/BookCard.jsx";
 import style from "./MyBooks.module.css";
+import { useNavigate } from "react-router-dom";
 const MyBooks = () => {
   const accessToken = useSelector((state) => state.authreducer.accessToken);
   const privateApi = useAxiosPrivate();
   const [books, setBooks] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const headers = {
       Authorization: `Bearer ${accessToken}`,
@@ -27,11 +29,19 @@ const MyBooks = () => {
     };
     getUsersBooks();
   }, [accessToken, setBooks, privateApi]);
-
+  const navigateBookDetail = (id) => {
+    navigate(`/books/${id}`);
+  };
   return (
     <div className={style.main}>
       {books && books.length ? (
-        books.map((book) => <BookCard key={book?.title} bookData={book} />)
+        books.map((book) => (
+          <BookCard
+            key={book?.title}
+            bookData={book}
+            navigateBookDetail={navigateBookDetail}
+          />
+        ))
       ) : (
         <div>No Books Found</div>
       )}
